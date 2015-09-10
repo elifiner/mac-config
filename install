@@ -1,0 +1,4 @@
+#!/bin/sh
+ln -is "$(pwd)/bash_profile" ~/.bash_profile
+ln -is "$(pwd)/vimrc" ~/.vimrc
+ln -is "$(pwd)/gitconfig" ~/.gitconfig

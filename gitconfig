@@ -1,9 +1,9 @@
 [user]
-	name = Eli Finer
-	email = eli.finer@gmail.com
+    name = Eli Finer
+    email = eli.finer@gmail.com
 
 [core]
-	editor = vim
+    editor = vim
     ignorecase = true
     excludesfile = ~/.gitignore
     
@@ -30,5 +30,3 @@
     branch-name = "!git rev-parse --abbrev-ref HEAD"
     publish = "!git push -u origin $(git branch-name):eli/$(git branch-name)"
     unpublish = "!git push origin :eli/$(git branch-name)"
-[heroku]
-	account = personal
