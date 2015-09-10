@@ -1,0 +1,34 @@
+[user]
+	name = Eli Finer
+	email = eli.finer@gmail.com
+
+[core]
+	editor = vim
+    ignorecase = true
+    excludesfile = ~/.gitignore
+    
+[color]
+    ui = auto
+
+[push]
+    default = tracking
+
+[merge]
+    tool = vimdiff
+    keepBackup = false
+    prompt = false
+
+[diff]
+    tool = vimdiff
+    mnemonicprefix = true
+
+[difftool]
+    prompt = false
+
+[alias]
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%cn%Creset' --abbrev-commit --date=relative
+    branch-name = "!git rev-parse --abbrev-ref HEAD"
+    publish = "!git push -u origin $(git branch-name):eli/$(git branch-name)"
+    unpublish = "!git push origin :eli/$(git branch-name)"
+[heroku]
+	account = personal
