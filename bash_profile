@@ -4,6 +4,7 @@ export PATH=$PATH:/Applications/android-sdk-macosx/platform-tools
 export CLICOLOR=yes
 export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 "[%s]")\$ '
 export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
 
 # aliases
 alias l='ls -F'
