@@ -12,6 +12,7 @@
 
 [push]
     default = tracking
+	followTags = true
 
 [merge]
     tool = vimdiff
@@ -26,7 +27,9 @@
     prompt = false
 
 [alias]
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%cn%Creset' --abbrev-commit --date=relative
+    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%ar%Creset %C(bold blue)%cn%Creset' --abbrev-commit
     branch-name = "!git rev-parse --abbrev-ref HEAD"
     publish = "!git push -u origin $(git branch-name):eli/$(git branch-name)"
     unpublish = "!git push origin :eli/$(git branch-name)"
+    review = "!git push -u origin $(git branch-name):$USER/review/$(git branch-name)"
+    unreview = "!git push -u origin :$USER/review/$(git branch-name)"
