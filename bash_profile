@@ -34,6 +34,8 @@ bind '"\e[B": history-search-forward'
 bind '"\e[A": history-search-backward'
 
 # bash-completion
+source /usr/local/opt/git/etc/bash_completion.d/git-prompt.sh
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
 fi
+
