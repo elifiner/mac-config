@@ -27,6 +27,7 @@ alias mkvenv='virtualenv venv --prompt="($(basename `pwd`))" && source venv/bin/
 alias venv3='source venv3/bin/activate'
 alias mkvenv3='virtualenv venv3 -p python3 --prompt="($(basename `pwd`)-py3)" && source venv3/bin/activate'
 alias showterm='showterm -e $SHELL -l'
+alias sudo='sudo -H'
 
 # arrows completion
 bind '"\e[B": history-search-forward'
