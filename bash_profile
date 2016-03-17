@@ -25,7 +25,7 @@ alias hosts='sudo vim /etc/hosts'
 alias venv='source venv/bin/activate'
 alias mkvenv='virtualenv venv --prompt="($(basename `pwd`))" && source venv/bin/activate'
 alias venv3='source venv3/bin/activate'
-alias mkvenv3='virtualenv-3.4 venv3 --prompt="($(basename `pwd`)-py3)" && source venv3/bin/activate'
+alias mkvenv3='virtualenv venv3 -p python3 --prompt="($(basename `pwd`)-py3)" && source venv3/bin/activate'
 alias showterm='showterm -e $SHELL -l'
 
 # arrows completion
