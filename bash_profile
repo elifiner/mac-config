@@ -29,6 +29,26 @@ alias mkvenv3='virtualenv venv3 -p python3 --prompt="($(basename `pwd`)-py3)" &&
 alias showterm='showterm -e $SHELL -l'
 alias sudo='sudo -H'
 
+# set up port forwarding
+function fwd {
+    [ $2 ] || { echo "usage: fwd <host> <port>"; return 1; }
+    pkill autossh
+    autossh -M 20000 -N -f $1 -L $2:localhost:$2
+}
+
+# run flame on a server
+function flame {
+    [ $1 ] || { echo "usage: fwd <nodespec>"; return 1; }
+    NODES=$1; shift
+    ssh -t ${NODES//..*/} -L 8080:localhost:8080 "
+        cd ~/source/flame
+        git log -1
+        sleep 3
+        make
+        run/flame.py -r $NODES --mngr-port 8080 --stat-port 15005 $*
+    "
+}
+
 # arrows completion
 bind '"\e[B": history-search-forward'
 bind '"\e[A": history-search-backward'
