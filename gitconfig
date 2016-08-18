@@ -27,9 +27,7 @@
     prompt = false
 
 [alias]
-    lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%ar%Creset %C(bold blue)%an%Creset' --abbrev-commit
+    lg = "log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%ar%Creset %C(bold blue)%an%Creset' --abbrev-commit"
     branch-name = "!git rev-parse --abbrev-ref HEAD"
-    publish = "!f() { BRANCH=${1:-$(git branch-name)}; git push origin $BRANCH:$USER/_$BRANCH; }; f"
-    unpublish = "!f() { BRANCH=${1:-$(git branch-name)}; git push origin :$USER/_$BRANCH; }; f"
-    review = "!f() { BRANCH=${1:-$(git branch-name)}; git push origin $BRANCH:$USER/review/$BRANCH; }; f"
-    unreview = "!f() { BRANCH=${1:-$(git branch-name)}; git push origin :$USER/review/$BRANCH; }; f"
+    publish = "!git push -u origin $(git branch-name):$USER/$(git branch-name)"
+    unpublish = "!git push origin :$USER/$(git branch-name)"
