@@ -6,6 +6,7 @@
     editor = vim
     ignorecase = true
     excludesfile = ~/.gitignore
+    pager = /usr/local/share/git-core/contrib/diff-highlight/diff-highlight | less
     
 [color]
     ui = auto
@@ -31,3 +32,5 @@
     branch-name = "!git rev-parse --abbrev-ref HEAD"
     publish = "!git push -u origin $(git branch-name):$USER/$(git branch-name)"
     unpublish = "!git push origin :$USER/$(git branch-name)"
+    pull-rebase = "!f() { [ $1 ] || exit 1; CURR=$(git branch-name); BASE=$1; shift; git checkout $BASE; git pull --rebase; git checkout $CURR; git rebase $BASE $@; }; f" 
+    amend = "commit --all --amend --no-edit"
