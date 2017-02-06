@@ -1,7 +1,8 @@
 syntax on
+set ruler
+set paste
 set hlsearch
 set expandtab tabstop=4 shiftwidth=4
 filetype plugin indent on
-autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4
-set ruler
-set paste
+au BufNewFile,BufRead *.yml set filetype=yaml
+autocmd Filetype yaml setlocal expandtab tabstop=2 shiftwidth=2
