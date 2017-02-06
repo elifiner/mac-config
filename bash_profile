@@ -21,8 +21,9 @@ alias gs='git status'
 alias chrome='open -a /Applications/Google\ Chrome.app'
 alias grep='grep --color=auto'
 alias top='top -ocpu'
-alias youtube-dl-mp3='youtube-dl -x --audio-format mp3'
-alias airport='/System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport'
+alias youtube-dl='youtube-dl -i -o "%(title)s.%(ext)s"'
+alias youtube-dl-mp3='youtube-dl -i -o "%(title)s.%(ext)s" -x --audio-format mp3'
+alias airport='sudo /System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport'
 alias hosts='sudo vim /etc/hosts'
 alias venv='source venv/bin/activate'
 alias mkvenv='virtualenv venv -p python3 --prompt="($(basename `pwd`))" && source venv/bin/activate'
@@ -31,10 +32,26 @@ alias sudo='sudo -H'
 alias axel='axel -a'
 alias jl='cd ~/source/parallel/flame/client/jlambda'
 alias rbt-flame="rbt post --repository flame"
-alias rbg-vagrant='f() { cd ~/source/retreatguru/rbg-vagrant; vagrant $@; }; f'
 alias short_prompt='export PS1=$PS1_SHORT'
 alias long_prompt='export PS1=$PS1_LONG'
 alias dc='docker-compose'
+alias selenium='java -Dwebdriver.chrome.driver=/opt/selenium/chromedriver -jar /opt/selenium/selenium-server-standalone-3.0.1.jar'
+alias rg='cd ~/source/retreatguru/programs'
+alias password='python3 -c "import os; print(os.urandom(16).hex())"'
+
+# add log-like time to each line of input
+function times {
+    while read line; do
+        echo `date "+%Y-%m-%d %H:%M:%S"` "$line"
+    done
+}
+
+function timediff {
+    SECONDS=0
+    while read line; do
+        printf "%05ds: %s\n" $SECONDS "$line"
+    done
+}
 
 # set up port forwarding
 function fwd {
