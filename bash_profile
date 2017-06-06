@@ -8,6 +8,8 @@ export PS1=$PS1_LONG
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export SLACK_TOKEN=xoxp-2351601660-64236240630-68668303525-c6524664a6
+export LESS="-iMFXRS"
+
 
 # aliases
 alias l='ls -F'
@@ -38,42 +40,13 @@ alias dc='docker-compose'
 alias selenium='java -Dwebdriver.chrome.driver=/opt/selenium/chromedriver -jar /opt/selenium/selenium-server-standalone-3.0.1.jar'
 alias rg='cd ~/source/retreatguru/programs'
 alias password='python3 -c "import os; print(os.urandom(16).hex())"'
+alias dev='PATH="$PATH:./:../:../../:../../../:../../../../" dev'
 
 # add log-like time to each line of input
 function times {
     while read line; do
         echo `date "+%Y-%m-%d %H:%M:%S"` "$line"
     done
-}
-
-function timediff {
-    SECONDS=0
-    while read line; do
-        printf "%05ds: %s\n" $SECONDS "$line"
-    done
-}
-
-# set up port forwarding
-function fwd {
-    [ $2 ] || { echo "usage: fwd <host> <port>"; return 1; }
-    pkill autossh
-    autossh -M 20000 -N -f $1 -L $2:localhost:$2
-}
-
-# run flame on a server
-function flame {
-    [ $1 ] || { echo "usage: flame <host> <nodes>"; return 1; }
-    HOST=$1
-    shift
-    NODES=$1
-    shift
-    ssh -t $HOST -L 8080:localhost:8080 "
-        cd ~/source/flame
-        git log -1
-        sleep 3
-        make
-        run/flame.py -r $NODES --mngr-port 8080 --keep-media --profile $HOST-ib task adm_reset $*
-    "
 }
 
 # arrows completion
