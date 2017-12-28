@@ -1,6 +1,7 @@
 # environment
 export PATH=$PATH:/opt/local/bin:/opt/local/sbin:/Users/eli/bin
 export PATH=$PATH:/Applications/android-sdk-macosx/platform-tools
+export PATH=$PATH:$HOME/.composer/vendor/bin
 export CLICOLOR=yes
 export PS1_SHORT='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]$(__git_ps1 "[%s]")\$ '
 export PS1_LONG='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 "[%s]")\$ '
@@ -9,6 +10,10 @@ export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
 export SLACK_TOKEN=xoxp-2351601660-64236240630-68668303525-c6524664a6
 export LESS="-iMFXRS"
+export BLACKFIRE_CLIENT_ID="2e381a7b-b8da-429f-8833-92a3a7a48347"
+export BLACKFIRE_CLIENT_TOKEN="dfa023422a7f178d4eefeaddc366cebade66264828f4ffbfaae36616b3af15af"
+export BLACKFIRE_SERVER_ID="363dc839-369b-4bbc-9abe-d401b5950d2a"
+export BLACKFIRE_SERVER_TOKEN="87b7db868631d2c6812ff848dcdd1d17ebcd27d6020a012398eb3966456694d9"
 
 
 # aliases
@@ -17,7 +22,7 @@ alias ll='ls -lFA'
 alias e='"/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl"'
 alias profile='vim ~/.bash_profile && source ~/.bash_profile && echo profile reloaded'
 alias vimrc='vim ~/.vimrc'
-alias gt=~/source/gitter/gitter
+alias gt='~/source/gitter/venv/bin/python ~/source/gitter/gitter'
 alias glg='git lg'
 alias gs='git status'
 alias chrome='open -a /Applications/Google\ Chrome.app'
@@ -32,21 +37,36 @@ alias mkvenv='virtualenv venv -p python3 --prompt="($(basename `pwd`))" && sourc
 alias showterm='showterm -e $SHELL -l'
 alias sudo='sudo -H'
 alias axel='axel -a'
-alias jl='cd ~/source/parallel/flame/client/jlambda'
-alias rbt-flame="rbt post --repository flame"
 alias short_prompt='export PS1=$PS1_SHORT'
 alias long_prompt='export PS1=$PS1_LONG'
 alias dc='docker-compose'
-alias selenium='java -Dwebdriver.chrome.driver=/opt/selenium/chromedriver -jar /opt/selenium/selenium-server-standalone-3.0.1.jar'
 alias rg='cd ~/source/retreatguru/programs'
 alias password='python3 -c "import os; print(os.urandom(16).hex())"'
 alias dev='PATH="$PATH:./:../:../../:../../../:../../../../" dev'
+alias ubuntu-start='docker run --name ubuntu -d elifiner/ubuntu:latest sleep infinity'
+alias ubuntu-kill='docker kill ubuntu; docker rm ubuntu'
+alias ubuntu='docker exec -it -e HOME=/root ubuntu bash'
+alias docker-stats='docker stats --format "table {{.Name}}\t{{.Container}}\t{{.CPUPerc}}\t{{.MemUsage}}"'
+alias seesv='~/source/seesv/seesv.py'
+alias deploy-eli="ssh -t eli.rbgapp.com 'cd programs; git fetch; gitter checkout; git pull --rebase'"
 
 # add log-like time to each line of input
 function times {
     while read line; do
         echo `date "+%Y-%m-%d %H:%M:%S"` "$line"
     done
+}
+
+# switch local xdebug on and off
+function xdebug_toggle {
+    XDEBUG=/usr/local/etc/php/5.6/conf.d/ext-xdebug.ini
+    if [ -f $XDEBUG ]; then
+        mv $XDEBUG $XDEBUG.off
+        echo xdebug is off
+    else
+        mv $XDEBUG.off $XDEBUG
+        echo xdebug is on
+    fi
 }
 
 # arrows completion
