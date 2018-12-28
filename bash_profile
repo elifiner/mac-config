@@ -3,7 +3,7 @@ export PATH=$PATH:/opt/local/bin:/opt/local/sbin:/Users/eli/bin
 export PATH=$PATH:/Applications/android-sdk-macosx/platform-tools
 export PATH=$PATH:$HOME/.composer/vendor/bin
 export CLICOLOR=yes
-export PS1_SHORT='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]$(__git_ps1 "[%s]")\$ '
+export PS1_SHORT='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]$(__git_ps1 "[%.8s]")\$ '
 export PS1_LONG='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 "[%s]")\$ '
 export PS1=$PS1_LONG
 export LANG=en_US.UTF-8
@@ -19,7 +19,8 @@ export BLACKFIRE_SERVER_TOKEN="87b7db868631d2c6812ff848dcdd1d17ebcd27d6020a01239
 # aliases
 alias l='ls -F'
 alias ll='ls -lFA'
-alias e='"/Applications/Sublime Text.app/Contents/SharedSupport/bin/subl"'
+alias e=code
+alias p='ping -i0.2 8.8.8.8'
 alias profile='vim ~/.bash_profile && source ~/.bash_profile && echo profile reloaded'
 alias vimrc='vim ~/.vimrc'
 alias gt='~/source/gitter/venv/bin/python ~/source/gitter/gitter'
@@ -27,7 +28,6 @@ alias glg='git lg'
 alias gs='git status'
 alias chrome='open -a /Applications/Google\ Chrome.app'
 alias grep='grep --color=auto'
-alias top='top -ocpu'
 alias youtube-dl='youtube-dl -i -o "%(title)s.%(ext)s"'
 alias youtube-dl-mp3='youtube-dl -i -o "%(title)s.%(ext)s" -x --audio-format mp3'
 alias airport='sudo /System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport'
@@ -37,36 +37,20 @@ alias mkvenv='virtualenv venv -p python3 --prompt="($(basename `pwd`))" && sourc
 alias showterm='showterm -e $SHELL -l'
 alias sudo='sudo -H'
 alias axel='axel -a'
-alias short_prompt='export PS1=$PS1_SHORT'
-alias long_prompt='export PS1=$PS1_LONG'
 alias dc='docker-compose'
 alias rg='cd ~/source/retreatguru/programs'
 alias password='python3 -c "import os; print(os.urandom(16).hex())"'
 alias dev='PATH="$PATH:./:../:../../:../../../:../../../../" dev'
-alias ubuntu-start='docker run --name ubuntu -d elifiner/ubuntu:latest sleep infinity'
-alias ubuntu-kill='docker kill ubuntu; docker rm ubuntu'
-alias ubuntu='docker exec -it -e HOME=/root ubuntu bash'
 alias docker-stats='docker stats --format "table {{.Name}}\t{{.Container}}\t{{.CPUPerc}}\t{{.MemUsage}}"'
-alias seesv='~/source/seesv/seesv.py'
-alias deploy-eli="ssh -t eli.rbgapp.com 'cd programs; git fetch; gitter checkout; git pull --rebase'"
+alias blackfire='blackfire --samples=1'
+alias prompt_long='PS1=$PS1_LONG'
+alias prompt_short='PS1=$PS1_SHORT'
 
 # add log-like time to each line of input
 function times {
     while read line; do
         echo `date "+%Y-%m-%d %H:%M:%S"` "$line"
     done
-}
-
-# switch local xdebug on and off
-function xdebug_toggle {
-    XDEBUG=/usr/local/etc/php/5.6/conf.d/ext-xdebug.ini
-    if [ -f $XDEBUG ]; then
-        mv $XDEBUG $XDEBUG.off
-        echo xdebug is off
-    else
-        mv $XDEBUG.off $XDEBUG
-        echo xdebug is on
-    fi
 }
 
 # arrows completion
@@ -82,3 +66,9 @@ fi
 # pyenv
 export PYENV_ROOT=/usr/local/var/pyenv
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/eli/google-cloud-sdk/path.bash.inc' ]; then source '/Users/eli/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/eli/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/eli/google-cloud-sdk/completion.bash.inc'; fi
