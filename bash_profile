@@ -2,6 +2,7 @@
 export PATH=$PATH:/opt/local/bin:/opt/local/sbin:/Users/eli/bin
 export PATH=$PATH:/Applications/android-sdk-macosx/platform-tools
 export PATH=$PATH:$HOME/.composer/vendor/bin
+export PATH=$PATH:/usr/local/Cellar/python/3.7.2_1/Frameworks/Python.framework/Versions/3.7/bin
 export CLICOLOR=yes
 export PS1_SHORT='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]$(__git_ps1 "[%.8s]")\$ '
 export PS1_LONG='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 "[%s]")\$ '
@@ -38,14 +39,17 @@ alias showterm='showterm -e $SHELL -l'
 alias sudo='sudo -H'
 alias axel='axel -a'
 alias dc='docker-compose'
-alias rg='cd ~/source/retreatguru/programs'
+alias rg='cd ~/source/retreatguru'
+alias rgp='cd ~/source/retreatguru/programs'
+alias rgr='cd ~/source/retreatguru/retreat.guru'
 alias password='python3 -c "import os; print(os.urandom(16).hex())"'
 alias dev='PATH="$PATH:./:../:../../:../../../:../../../../" dev'
 alias ev='PATH="$PATH:./:../:../../:../../../:../../../../" dev'
-alias docker-stats='docker stats --format "table {{.Name}}\t{{.Container}}\t{{.CPUPerc}}\t{{.MemUsage}}"'
 alias blackfire='blackfire --samples=1'
 alias prompt_long='PS1=$PS1_LONG'
 alias prompt_short='PS1=$PS1_SHORT'
+alias pivot='php ~/source/retreatguru/pivot/pivot.php'
+alias mirror='httrack --http-10 --verbose --user-agent="Mozilla/5.0"'
 
 # add log-like time to each line of input
 function times {
@@ -73,3 +77,6 @@ if [ -f '/Users/eli/google-cloud-sdk/path.bash.inc' ]; then source '/Users/eli/g
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/eli/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/eli/google-cloud-sdk/completion.bash.inc'; fi
+
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
