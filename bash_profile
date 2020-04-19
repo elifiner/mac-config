@@ -15,7 +15,7 @@ export BLACKFIRE_CLIENT_ID="2e381a7b-b8da-429f-8833-92a3a7a48347"
 export BLACKFIRE_CLIENT_TOKEN="dfa023422a7f178d4eefeaddc366cebade66264828f4ffbfaae36616b3af15af"
 export BLACKFIRE_SERVER_ID="363dc839-369b-4bbc-9abe-d401b5950d2a"
 export BLACKFIRE_SERVER_TOKEN="87b7db868631d2c6812ff848dcdd1d17ebcd27d6020a012398eb3966456694d9"
-
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # aliases
 alias l='ls -F'
@@ -24,7 +24,8 @@ alias e=code
 alias p='ping -i0.2 8.8.8.8'
 alias profile='vim ~/.bash_profile && source ~/.bash_profile && echo profile reloaded'
 alias vimrc='vim ~/.vimrc'
-alias gt='~/source/gitter/venv/bin/python ~/source/gitter/gitter'
+alias gt=gitter
+# alias gt='~/source/gitter/venv/bin/python ~/source/gitter/gitter'
 alias glg='git lg'
 alias gs='git status'
 alias chrome='open -a /Applications/Google\ Chrome.app'
